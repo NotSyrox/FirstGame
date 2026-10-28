@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://8grmwwj6lxvb"]
+
+[ext_resource type="Script" uid="uid://d335gbpp3eug6" path="res://scripts/jump_multiplier_potion.gd" id="1_kv7ns"]
+[ext_resource type="Texture2D" uid="uid://hno1iofis03l" path="res://assets/sprites/world_tileset.png" id="1_spxpl"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecdfd"]
+atlas = ExtResource("1_spxpl")
+region = Rect2(16, 113, 16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4hwfb"]
+size = Vector2(8, 14)
+
+[node name="JumpMultiplierPotion" type="Area2D" unique_id=1944355651]
+collision_mask = 2
+script = ExtResource("1_kv7ns")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=259978053]
+texture = SubResource("AtlasTexture_ecdfd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1428623287]
+shape = SubResource("RectangleShape2D_4hwfb")
+
+[node name="Timer" type="Timer" parent="." unique_id=714474689]
+wait_time = 30.0
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
