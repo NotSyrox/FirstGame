@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bvvje3rtr10vh" path="res://scenes/coin.tscn" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://8grmwwj6lxvb" path="res://scenes/jump_multiplier_potion.tscn" id="6_p57ef"]
 [ext_resource type="PackedScene" uid="uid://blxaikdc5tq56" path="res://scenes/speed_multiplier_potion.tscn" id="7_u5sy4"]
+[ext_resource type="PackedScene" uid="uid://cvwd5idvcbc86" path="res://scenes/killzone.tscn" id="8_gee14"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p57ef"]
 texture = ExtResource("3_iywne")
@@ -250,6 +251,8 @@ _data = {
 &"move": SubResource("Animation_0tnpc")
 }
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8sma8"]
+
 [node name="Game" type="Node2D" unique_id=776809263]
 
 [node name="TileMap" type="TileMap" parent="." unique_id=584806725]
@@ -266,42 +269,57 @@ script = ExtResource("2_lbhrr")
 position = Vector2(0, -8)
 zoom = Vector2(3, 3)
 limit_bottom = 250
+limit_smoothed = true
 position_smoothing_enabled = true
 
-[node name="Platform" parent="." unique_id=1887614683 instance=ExtResource("4_lbhrr")]
+[node name="Platforms" type="Node" parent="." unique_id=75662419]
+
+[node name="Platform" parent="Platforms" unique_id=1887614683 instance=ExtResource("4_lbhrr")]
 position = Vector2(160, 68)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Platform" unique_id=1002772546]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/Platform" unique_id=1002772546]
 libraries/ = SubResource("AnimationLibrary_u5sy4")
 autoplay = &"move"
 
-[node name="Platform2" parent="." unique_id=1568524628 instance=ExtResource("4_lbhrr")]
+[node name="Platform2" parent="Platforms" unique_id=1568524628 instance=ExtResource("4_lbhrr")]
 position = Vector2(480, 132)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Platform2" unique_id=300302823]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/Platform2" unique_id=300302823]
 libraries/ = SubResource("AnimationLibrary_vtaks")
 autoplay = &"move"
 
-[node name="Coin" parent="." unique_id=1591707017 instance=ExtResource("5_iywne")]
+[node name="Coins" type="Node" parent="." unique_id=404228192]
+
+[node name="Coin" parent="Coins" unique_id=1591707017 instance=ExtResource("5_iywne")]
 position = Vector2(-40, 105)
 
-[node name="Coin2" parent="." unique_id=1162618979 instance=ExtResource("5_iywne")]
+[node name="Coin2" parent="Coins" unique_id=1162618979 instance=ExtResource("5_iywne")]
 position = Vector2(648, 153)
 
-[node name="Coin3" parent="." unique_id=370043656 instance=ExtResource("5_iywne")]
+[node name="Coin3" parent="Coins" unique_id=370043656 instance=ExtResource("5_iywne")]
 position = Vector2(527, 125)
 
-[node name="Coin4" parent="." unique_id=733339620 instance=ExtResource("5_iywne")]
+[node name="Coin4" parent="Coins" unique_id=733339620 instance=ExtResource("5_iywne")]
 position = Vector2(280, 153)
 
-[node name="JumpMultiplierPotion" parent="." unique_id=1944355651 instance=ExtResource("6_p57ef")]
-position = Vector2(264, 151)
+[node name="SpeedPotion" type="Node" parent="." unique_id=4894601]
 
-[node name="SpeedMultiplierPotion" parent="." unique_id=1289666925 instance=ExtResource("7_u5sy4")]
+[node name="SpeedMultiplierPotion" parent="SpeedPotion" unique_id=1289666925 instance=ExtResource("7_u5sy4")]
 position = Vector2(-24, 87)
 
-[node name="SpeedMultiplierPotion2" parent="." unique_id=562700975 instance=ExtResource("7_u5sy4")]
+[node name="SpeedMultiplierPotion2" parent="SpeedPotion" unique_id=562700975 instance=ExtResource("7_u5sy4")]
 position = Vector2(360, 87)
 
-[node name="JumpMultiplierPotion2" parent="." unique_id=1356122878 instance=ExtResource("6_p57ef")]
+[node name="JumpPotion" type="Node" parent="." unique_id=1608107440]
+
+[node name="JumpMultiplierPotion" parent="JumpPotion" unique_id=1944355651 instance=ExtResource("6_p57ef")]
+position = Vector2(264, 151)
+
+[node name="JumpMultiplierPotion2" parent="JumpPotion" unique_id=1356122878 instance=ExtResource("6_p57ef")]
 position = Vector2(600, 119)
+
+[node name="killzone" parent="." unique_id=1192182113 instance=ExtResource("8_gee14")]
+position = Vector2(71, 221)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone" unique_id=1443427750]
+shape = SubResource("WorldBoundaryShape2D_8sma8")
