@@ -5,7 +5,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ecdfd"]
 atlas = ExtResource("1_spxpl")
-region = Rect2(16, 113, 16, 16)
+region = Rect2(16, 112, 16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4hwfb"]
 size = Vector2(8, 14)
@@ -18,10 +18,11 @@ script = ExtResource("1_kv7ns")
 texture = SubResource("AtlasTexture_ecdfd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1428623287]
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_4hwfb")
 
 [node name="Timer" type="Timer" parent="." unique_id=714474689]
-wait_time = 30.0
+wait_time = 15.0
 one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

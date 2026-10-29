@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d0qrtpjcw0umw" path="res://scenes/platform.tscn" id="4_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://bvvje3rtr10vh" path="res://scenes/coin.tscn" id="5_iywne"]
 [ext_resource type="PackedScene" uid="uid://8grmwwj6lxvb" path="res://scenes/jump_multiplier_potion.tscn" id="6_p57ef"]
+[ext_resource type="PackedScene" uid="uid://blxaikdc5tq56" path="res://scenes/speed_multiplier_potion.tscn" id="7_u5sy4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p57ef"]
 texture = ExtResource("3_iywne")
@@ -294,4 +295,13 @@ position = Vector2(527, 125)
 position = Vector2(280, 153)
 
 [node name="JumpMultiplierPotion" parent="." unique_id=1944355651 instance=ExtResource("6_p57ef")]
-position = Vector2(264, 153)
+position = Vector2(264, 151)
+
+[node name="SpeedMultiplierPotion" parent="." unique_id=1289666925 instance=ExtResource("7_u5sy4")]
+position = Vector2(-24, 87)
+
+[node name="SpeedMultiplierPotion2" parent="." unique_id=562700975 instance=ExtResource("7_u5sy4")]
+position = Vector2(360, 87)
+
+[node name="JumpMultiplierPotion2" parent="." unique_id=1356122878 instance=ExtResource("6_p57ef")]
+position = Vector2(600, 119)

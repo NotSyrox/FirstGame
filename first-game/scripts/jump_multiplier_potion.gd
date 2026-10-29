@@ -2,6 +2,7 @@ extends Area2D
 
 @onready var timer: Timer = $Timer
 var player = null;
+var is_picked_up: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -9,13 +10,22 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
+	if is_picked_up:
+		return
+	
+	is_picked_up = true
 	body.maxJumpAmount += 1
+	print("Jump amount set to " + str(body.maxJumpAmount))
 	player = body
-	queue_free()
+	
+	monitoring = false
+	monitorable = false
+	visible = false
+	timer.start()
 
 
 func _on_timer_timeout() -> void:
-	if player == null:
-		pass
-	else:
+	if player != null:
 		player.maxJumpAmount -=1
+		print("Jump amount reset to " + str(player.maxJumpAmount))
+	queue_free()
