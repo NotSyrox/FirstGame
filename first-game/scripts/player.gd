@@ -6,6 +6,7 @@ var SPEED = 130.0
 var JUMP_VELOCITY = -300.0
 var maxJumpAmount = 1
 var currentJumps = 0
+var allow_input = true
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 
@@ -17,10 +18,10 @@ func _physics_process(delta: float) -> void:
 		currentJumps = 0
 
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and not is_on_floor() and (maxJumpAmount - currentJumps >= 1) and currentJumps != 0:
+	if Input.is_action_just_pressed("jump") and not is_on_floor() and (maxJumpAmount - currentJumps >= 1) and currentJumps != 0 and allow_input:
 		currentJumps += 1
 		velocity.y = JUMP_VELOCITY
-	if Input.is_action_just_pressed("jump") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor() and allow_input:
 		currentJumps += 1
 		velocity.y = JUMP_VELOCITY
 	# Get the input direction and handle the movement/deceleration.
@@ -41,7 +42,7 @@ func _physics_process(delta: float) -> void:
 		animated_sprite.play("jump")
 		
 		
-	if direction:
+	if direction and allow_input:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
