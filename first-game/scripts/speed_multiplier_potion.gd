@@ -15,7 +15,7 @@ func _on_body_entered(body: Node2D) -> void:
 		
 	is_picked_up = true
 	
-	body.SPEED *= 2
+	body.SPEED += 0.25
 	print("Speed set to " + str(body.SPEED / body.DEFAULT_SPEED) + "x")
 	player = body
 	
@@ -27,6 +27,6 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_timer_timeout() -> void:
 	if player != null:
-		player.SPEED /= 2
+		player.SPEED -= 0.25
 		print("Speed reset to " + str(player.SPEED / player.DEFAULT_SPEED) + "x")
 	queue_free()
